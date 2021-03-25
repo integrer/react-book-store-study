@@ -1,11 +1,23 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val queryDslVersion = "4.1.4"
+
 plugins {
     id("org.springframework.boot") version "2.4.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.31"
+    kotlin("kapt") version "1.4.31"
     kotlin("plugin.spring") version "1.4.31"
     kotlin("plugin.jpa") version "1.4.31"
+    id("idea")
+}
+
+idea {
+    module {
+        val kaptMain = file("build/generated/source/kapt/main")
+        sourceDirs.add(kaptMain)
+        generatedSourceDirs.add(kaptMain)
+    }
 }
 
 group = "com.nbibik"
@@ -18,10 +30,24 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.querydsl:querydsl-jpa:$queryDslVersion")
+    kapt("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+kapt {
+    correctErrorTypes = true
+
+    javacOptions {
+        option("SomeJavacOption", "OptionValue")
+    }
+
+    arguments {
+        arg("SomeKaptArgument", "ArgumentValue")
+    }
 }
 
 tasks.withType<KotlinCompile> {
