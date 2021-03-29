@@ -17,7 +17,7 @@ class BookListService {
 
   fun getList(query: Query = Query.default, pageConfig: PageConfig = PageConfig.default): PagedList<Book> {
     val pageRequest = PageRequest.of(pageConfig.page, pageConfig.pageSize)
-    val page = repository.findAll(getPredicateOf(query) ?: Expressions.TRUE, pageRequest)
+    val page = getPredicateOf(query)?.let { repository.findAll(it, pageRequest) } ?: repository.findAll(pageRequest)
     return PagedList(page.totalPages, pageConfig.page, page.map(Book::from).toList())
   }
 
