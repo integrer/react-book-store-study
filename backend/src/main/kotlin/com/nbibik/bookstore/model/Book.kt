@@ -10,12 +10,12 @@ data class Book(
   val genre: String,
 ) {
   companion object {
-    fun from(hotelEntity: BookEntity) = Book(
-      requireNotNull(hotelEntity.id) { "id of $hotelEntity should be initialized" },
-      hotelEntity.name,
-      hotelEntity.author,
-      hotelEntity.year,
-      hotelEntity.genre,
+    fun from(bookEntity: BookEntity) = Book(
+      requireNotNull(bookEntity.id) { "id of $bookEntity should be initialized" },
+      bookEntity.name,
+      bookEntity.author,
+      bookEntity.year,
+      bookEntity.genre,
     )
   }
 }
