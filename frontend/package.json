@@ -24,7 +24,7 @@
     "build": "webpack --mode production",
     "test": "echo 'Not implemented' && exit 1",
     "eject": "echo 'Not implemented' && exit 1",
-    "postinstall": "husky install"
+    "postinstall": "cd .. && husky install frontend/.husky"
   },
   "eslintConfig": {
     "extends": [
