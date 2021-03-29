@@ -1,3 +1,5 @@
+import { BookActions } from './types';
+
 interface PagedList<I> {
   totalPages: number;
   currentPage: number;
@@ -37,12 +39,12 @@ const initialState: State = {
   cart: [],
 };
 
-const reducer = (state = initialState, action: { type?: string } & object = {}) => {
+const reducer = (state = initialState, action: { type?: BookActions } & object = {}) => {
   const { type } = action;
   switch (type) {
-    case 'FETCH_BOOKS_REQUEST':
+    case BookActions.FETCH_BOOKS_REQUEST:
       return { ...state, loading: true };
-    case 'FETCH_BOOKS_SUCCESS': {
+    case BookActions.FETCH_BOOKS_SUCCESS: {
       const { payload } = action as { payload: PagedList<Book> };
       const list = { ...payload, items: payload.items.map(({ id }) => id) };
       const items = {
@@ -51,7 +53,7 @@ const reducer = (state = initialState, action: { type?: string } & object = {}) 
       };
       return { ...state, list, items, error: false, loading: false };
     }
-    case 'FETCH_BOOKS_FAILURE':
+    case BookActions.FETCH_BOOKS_FAILURE:
       return { ...state, error: true, loading: false };
     default:
       return state;
