@@ -1,6 +1,7 @@
 const path = require('path');
 const { stylePlugins, styleLoaders } = require('./webpack_config/styles');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env, argv) => {
@@ -89,6 +90,7 @@ module.exports = (env, argv) => {
         title: 'React Bookstore',
         appMountId: 'root',
       }),
+      new webpack.EnvironmentPlugin(['API_URL']),
     ],
   };
 };
