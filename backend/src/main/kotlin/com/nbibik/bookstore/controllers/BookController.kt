@@ -19,8 +19,9 @@ class BookController {
     @RequestParam(value = "yearFrom") yearFrom: Short?,
     @RequestParam(value = "yearTo") yearTo: Short?,
     @RequestParam(value = "page") page: Int?,
+    @RequestParam(value = "pageSize") pageSize: Int?,
   ) = hotelListService.getList(
     BookListService.Query(name, author, genre, yearFrom, yearTo),
-    BookListService.PageConfig.of(page)
+    BookListService.PageConfig.of(page, pageSize)
   )
 }
