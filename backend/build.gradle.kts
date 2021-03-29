@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val queryDslVersion = "4.1.4"
+val queryDslVersion = "4.4.0"
 val dotenvKotlinVersion = "6.2.2"
 
 plugins {
