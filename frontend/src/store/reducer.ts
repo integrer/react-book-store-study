@@ -1,31 +1,4 @@
-import { BookActions } from './types';
-
-interface PagedList<I> {
-  totalPages: number;
-  currentPage: number;
-  items: I[];
-}
-
-interface Book {
-  id: number;
-  author: string;
-  genre: string;
-  name: string;
-  year: number;
-}
-
-interface CartItem {
-  id: number;
-  quantity: number;
-}
-
-interface State {
-  list: PagedList<number>;
-  loading: boolean;
-  error: boolean;
-  items: Record<number, Book>;
-  cart: CartItem[];
-}
+import { Action, Book, BookActions, PagedList, State } from './types';
 
 const initialState: State = {
   list: {
@@ -39,7 +12,7 @@ const initialState: State = {
   cart: [],
 };
 
-const reducer = (state = initialState, action: { type?: BookActions } & object = {}) => {
+const reducer = (state = initialState, action: Partial<Action> = {}) => {
   const { type } = action;
   switch (type) {
     case BookActions.FETCH_BOOKS_REQUEST:
