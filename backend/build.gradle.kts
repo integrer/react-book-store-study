@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val queryDslVersion = "4.1.4"
+val dotenvKotlinVersion = "6.2.2"
 
 plugins {
     id("org.springframework.boot")
@@ -38,6 +39,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("io.github.cdimascio:dotenv-kotlin:$dotenvKotlinVersion")
 }
 
 kapt {
