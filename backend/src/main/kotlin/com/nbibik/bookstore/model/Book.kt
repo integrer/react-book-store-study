@@ -8,6 +8,7 @@ data class Book(
   val author: String,
   val year: Short,
   val genre: String,
+  val isbn: String,
 ) {
   companion object {
     fun from(bookEntity: BookEntity) = Book(
@@ -16,6 +17,7 @@ data class Book(
       bookEntity.author,
       bookEntity.year,
       bookEntity.genre,
+      bookEntity.isbn,
     )
   }
 }

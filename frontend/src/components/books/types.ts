@@ -25,6 +25,7 @@ export interface Book {
   genre: string;
   name: string;
   year: number;
+  isbn: string;
 }
 
 interface CartItem {

@@ -9,14 +9,62 @@ import org.springframework.stereotype.Component
 import javax.transaction.Transactional
 
 fun bookSeeder(): ArrayList<BookEntity> = arrayListOf(
-    BookEntity("Eloquent JavaScript, Second Edition", "Marijn Haverbeke", 2014, "programming"),
-    BookEntity("Learning JavaScript Design Patterns", "Addy Osmani", 2012, "programming"),
-    BookEntity("An In-Depth Guide for Programmers", "Axel Rauschmayer", 2014, "programming"),
-    BookEntity("Programming JavaScript Applications", "Eric Elliott", 2014, "programming"),
-    BookEntity("Understanding ECMAScript 6", "Nicholas C. Zakas", 2016, "programming"),
-    BookEntity("You Don't Know JS", "Kyle Simpson", 2015, "programming"),
-    BookEntity("Git Pocket Guide", "Richard E. Silverman", 2013, "programming"),
-    BookEntity("Designing Evolvable Web APIs with ASP.NET", "Glenn Block, et al.", 2014, "programming"),
+    BookEntity(
+        "Eloquent JavaScript, Second Edition",
+        "Marijn Haverbeke",
+        2014,
+        "programming",
+        "9781593275846",
+    ),
+    BookEntity(
+        "Learning JavaScript Design Patterns",
+        "Addy Osmani",
+        2012,
+        "programming",
+        "9781449331818",
+    ),
+    BookEntity(
+        "An In-Depth Guide for Programmers",
+        "Axel Rauschmayer",
+        2014,
+        "programming",
+        "9781449365035",
+    ),
+    BookEntity(
+        "Programming JavaScript Applications",
+        "Eric Elliott",
+        2014,
+        "programming",
+        "9781491950296",
+    ),
+    BookEntity(
+        "Understanding ECMAScript 6",
+        "Nicholas C. Zakas",
+        2016,
+        "programming",
+        "9781593277574",
+    ),
+    BookEntity(
+        "You Don't Know JS",
+        "Kyle Simpson",
+        2015,
+        "programming",
+        "9781491904244",
+    ),
+    BookEntity(
+        "Git Pocket Guide",
+        "Richard E. Silverman",
+        2013,
+        "programming",
+        "9781449325862",
+    ),
+    BookEntity(
+        "Designing Evolvable Web APIs with ASP.NET",
+        "Glenn Block, et al.",
+        2014,
+        "programming",
+        "9781449337711",
+    ),
 )
 
 @Component

@@ -10,4 +10,5 @@ class BookEntity(
     val author: String,
     val year: Short,
     val genre: String,
+    val isbn: String,
 ) : BaseEntity<Long>()
