@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { connect, ConnectedProps } from 'react-redux';
-import { RootState } from '~/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootDispatch, RootState } from '~/store';
 import AppSettings from '~/app-settings';
 import Preloader from '~/components/preloader';
 import List from './list';
@@ -10,32 +10,28 @@ const AppSettingsAware = () => {
   return (
     <AppSettings.Consumer>
       {appSettings => {
-        const mapState = ({ books: { loading, error, items, list } }: RootState) => ({
-          loading,
-          error,
-          items,
-          list,
-        });
-
-        const mapDispatch = { fetchBooks };
-
-        const connector = connect(mapState, mapDispatch);
-
-        const Component = (props: ConnectedProps<typeof connector>) => {
-          if (props.loading) return <Preloader />;
-          if (props.error) return <>Some error occurred...</>;
+        const Component = () => {
+          const state = useSelector(({ books: { loading, error, items, list } }: RootState) => ({
+            loading,
+            error,
+            items,
+            list,
+          }));
+          const dispatch = useDispatch<RootDispatch>();
           useEffect(() => {
-            props.fetchBooks(appSettings.api(), {});
+            dispatch(fetchBooks(appSettings.api()));
             return cancelFetchBooks;
           }, []);
-          const books = props.list.items.map(i => props.items[i]);
+          if (state.loading) return <Preloader />;
+          if (state.error) return <>Some error occurred...</>;
+          const books = state.list.items.map(i => state.items[i]);
           return (
             <>
               <List books={books} />
             </>
           );
         };
-        return connector(Component);
+        return <Component />;
       }}
     </AppSettings.Consumer>
   );
