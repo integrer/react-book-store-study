@@ -11,14 +11,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @EnableWebMvc
 class WebConfig : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
+        val allowedHosts = sequenceOf("localhost", "127.0.0.1", "0.0.0.0")
+        val allowedPorts = sequenceOf("3000", "8080")
         registry.addMapping("/**")
             .allowedOrigins(
-                "http://localhost:3000",
-                "http://0.0.0.0:3000",
-                "http://127.0.0.1:3000",
-                "http://localhost:8080",
-                "http://0.0.0.0:8080",
-                "http://127.0.0.1:8080",
+                *allowedHosts.flatMap { h -> allowedPorts.map { p -> "http://$h:$p" } }.toList().toTypedArray()
             )
             .allowedHeaders("*")
             .allowedMethods("*")
