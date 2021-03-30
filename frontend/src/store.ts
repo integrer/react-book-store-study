@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import booksReducer from '~/components/books/reducer';
+import booksReducer from '~/features/books/reducer';
 
 const store = configureStore({
   reducer: { books: booksReducer },
