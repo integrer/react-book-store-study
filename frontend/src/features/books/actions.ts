@@ -3,7 +3,7 @@ import { Book, BookAction, BookActionTypes, PagedList } from './types';
 import Axios, { AxiosInstance, Canceler } from 'axios';
 import { RootState } from '~/store';
 
-interface PageParams {
+export interface PageParams {
   page?: number;
   pageSize?: number;
 }
