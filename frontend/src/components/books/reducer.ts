@@ -20,10 +20,7 @@ const reducer = (state = initialState, action: Partial<Action> = {}) => {
     case BookActions.FETCH_BOOKS_SUCCESS: {
       const { payload } = action as { payload: PagedList<Book> };
       const list = { ...payload, items: payload.items.map(({ id }) => id) };
-      const items = {
-        ...state.items,
-        ...payload.items.reduceRight((acc, i) => ({ ...acc, [i.id]: i }), <Record<number, Book>>{}),
-      };
+      const items = payload.items.reduceRight((acc, i) => ({ ...acc, [i.id]: i }), state.items);
       return { ...state, list, items, error: false, loading: false };
     }
     case BookActions.FETCH_BOOKS_FAILURE:
