@@ -17,7 +17,7 @@ const loadBookPagedList = (() => {
     try {
       return await axios.get('books', { cancelToken: token, params: pageParams });
     } finally {
-      cancelFetchBooks = null;
+      if (cancelFetchBooks === cancel) cancelFetchBooks = null;
     }
   };
 })();
