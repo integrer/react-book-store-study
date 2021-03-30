@@ -17,7 +17,7 @@ const { loadBookPagedList, cancelFetchBooks } = (() => {
     },
     loadBookPagedList: async (
       axios: AxiosInstance,
-      pageParams: PageParams,
+      pageParams?: PageParams,
     ): Promise<PagedList<Book>> => {
       cancelFetchBooks?.();
       const { token, cancel } = Axios.CancelToken.source();
@@ -36,7 +36,7 @@ export { cancelFetchBooks };
 const isPageOutOfRange = ({ currentPage, totalPages }: PagedList<any>) =>
   currentPage > totalPages - 1;
 
-export const fetchBooks = (axios: AxiosInstance, pageParams: PageParams) => async (
+export const fetchBooks = (axios: AxiosInstance, pageParams?: PageParams) => async (
   dispatch: ThunkDispatch<RootState, void, BookAction>,
   _getState: () => RootState,
 ) => {
