@@ -6,7 +6,7 @@ export default () => {
       <h1>Cart</h1>
       <ul>
         {Array.from({ length: 5 }, (v, idx) => (
-          <li>Option {idx + 1}</li>
+          <li key={idx}>Option {idx + 1}</li>
         ))}
       </ul>
     </div>

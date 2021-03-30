@@ -14,8 +14,8 @@ export default ({ books }: { books: Book[] }) => {
         </tr>
       </thead>
       <tbody>
-        {books.map(({ name, author, year, genre, isbn }) => (
-          <tr>
+        {books.map(({ id, name, author, year, genre, isbn }) => (
+          <tr key={id}>
             <td>{name}</td>
             <td>{author}</td>
             <td>{year}</td>
