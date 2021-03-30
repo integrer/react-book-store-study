@@ -23,7 +23,9 @@ const { loadBookPagedList, cancelFetchBooks } = (() => {
       const { token, cancel } = Axios.CancelToken.source();
       cancelFetchBooks = cancel;
       try {
-        return await axios.get('books', { cancelToken: token, params: pageParams });
+        return (
+          await axios.get<PagedList<Book>>('books', { cancelToken: token, params: pageParams })
+        ).data;
       } finally {
         if (cancelFetchBooks === cancel) cancelFetchBooks = null;
       }
