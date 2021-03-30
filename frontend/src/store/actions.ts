@@ -38,9 +38,8 @@ export const fetchBooks = (axios: AxiosInstance, pageParams: PageParams) => asyn
       dispatch({ type: BookActions.FETCH_BOOKS_SUCCESS, payload });
     }
   } catch (e) {
-    if (!Axios.isCancel(e)) {
-      dispatch({ type: BookActions.FETCH_BOOKS_FAILURE });
-      throw e;
-    }
+    if (Axios.isCancel(e)) return;
+    dispatch({ type: BookActions.FETCH_BOOKS_FAILURE });
+    throw e;
   }
 };
