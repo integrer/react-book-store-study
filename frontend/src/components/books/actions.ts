@@ -1,5 +1,5 @@
 import { ThunkDispatch } from 'redux-thunk';
-import { Action, Book, BookActions, PagedList } from './types';
+import { BookAction, Book, BookActionTypes, PagedList } from './types';
 import Axios, { AxiosInstance, Canceler } from 'axios';
 import { RootState } from '~/store';
 
@@ -27,20 +27,20 @@ const isPageOutOfRange = ({ currentPage, totalPages }: PagedList<any>) =>
   currentPage > totalPages - 1;
 
 export const fetchBooks = (axios: AxiosInstance, pageParams: PageParams) => async (
-  dispatch: ThunkDispatch<RootState, void, Action>,
+  dispatch: ThunkDispatch<RootState, void, BookAction>,
   _getState: () => RootState,
 ) => {
-  dispatch({ type: BookActions.FETCH_BOOKS_REQUEST });
+  dispatch({ type: BookActionTypes.FETCH_BOOKS_REQUEST });
   try {
     const payload = await loadBookPagedList(axios, pageParams);
     if (isPageOutOfRange(payload)) {
       await dispatch(fetchBooks(axios, { ...pageParams, page: payload.totalPages - 1 }));
     } else {
-      dispatch({ type: BookActions.FETCH_BOOKS_SUCCESS, payload });
+      dispatch({ type: BookActionTypes.FETCH_BOOKS_SUCCESS, payload });
     }
   } catch (e) {
     if (Axios.isCancel(e)) return;
-    dispatch({ type: BookActions.FETCH_BOOKS_FAILURE });
+    dispatch({ type: BookActionTypes.FETCH_BOOKS_FAILURE });
     throw e;
   }
 };

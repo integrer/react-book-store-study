@@ -1,4 +1,4 @@
-import { Action, BookActions, State } from './types';
+import { BookAction, BookActionTypes, State } from './types';
 
 const initialState: State = {
   list: {
@@ -12,17 +12,17 @@ const initialState: State = {
   cart: [],
 };
 
-const reducer = (state = initialState, action?: Action) => {
+const reducer = (state = initialState, action?: BookAction) => {
   switch (action?.type) {
-    case BookActions.FETCH_BOOKS_REQUEST:
+    case BookActionTypes.FETCH_BOOKS_REQUEST:
       return { ...state, loading: true };
-    case BookActions.FETCH_BOOKS_SUCCESS: {
-      const { payload } = action as Action<BookActions.FETCH_BOOKS_SUCCESS>;
+    case BookActionTypes.FETCH_BOOKS_SUCCESS: {
+      const { payload } = action as BookAction<BookActionTypes.FETCH_BOOKS_SUCCESS>;
       const list = { ...payload, items: payload.items.map(({ id }) => id) };
       const items = payload.items.reduceRight((acc, i) => ({ ...acc, [i.id]: i }), state.items);
       return { ...state, list, items, error: false, loading: false };
     }
-    case BookActions.FETCH_BOOKS_FAILURE:
+    case BookActionTypes.FETCH_BOOKS_FAILURE:
       return { ...state, error: true, loading: false };
     default:
       return state;
