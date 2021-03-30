@@ -3,6 +3,7 @@ import { Action as BaseAction } from 'redux';
 export enum BookActionTypes {
   FETCH_BOOKS_REQUEST = 'FETCH_BOOKS_REQUEST',
   FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS',
+  FETCH_BOOKS_CANCEL = 'FETCH_BOOKS_CANCEL',
   FETCH_BOOKS_FAILURE = 'FETCH_BOOKS_FAILURE',
 }
 

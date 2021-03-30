@@ -22,6 +22,8 @@ const reducer = (state = initialState, action?: BookAction) => {
       const items = payload.items.reduceRight((acc, i) => ({ ...acc, [i.id]: i }), state.items);
       return { ...state, list, items, error: false, loading: false };
     }
+    case BookActionTypes.FETCH_BOOKS_CANCEL:
+      return { ...state, loading: false };
     case BookActionTypes.FETCH_BOOKS_FAILURE:
       return { ...state, error: true, loading: false };
     default:
