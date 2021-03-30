@@ -1,14 +1,7 @@
 import React from 'react';
+import { Book } from '../types';
 
-const books = Array.from({ length: 5 }, (_v, idx) => ({
-  name: `Book ${idx + 1}`,
-  author: `Author ${idx + 1}`,
-  year: 2015 + idx,
-  genre: `Genre ${idx + 1}`,
-  isbn: Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join(''),
-}));
-
-export default () => {
+export default ({ books }: { books: Book[] }) => {
   return (
     <table>
       <thead>
