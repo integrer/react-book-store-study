@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <AppSettings.Provider value={appSettings}>
-        <List books={[]} />
+        <List />
         <Cart />
       </AppSettings.Provider>
     </Provider>
