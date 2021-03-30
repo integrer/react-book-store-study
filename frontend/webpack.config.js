@@ -3,9 +3,15 @@ const { stylePlugins, styleLoaders } = require('./webpack_config/styles');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const dotenv = require('dotenv');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
+  [`.env.${mode}.local`, `.env.${mode}`, '.env.local', '.env']
+    .map(p => path.resolve('./', p))
+    .forEach(p => {
+      dotenv.config({ path: p });
+    });
   const serve = !!env.WEBPACK_SERVE;
   const styleSyntax = ['sass', 'scss', 'css'];
   const isDevelopment = mode === 'development';
