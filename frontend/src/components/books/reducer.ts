@@ -1,4 +1,4 @@
-import { Action, Book, BookActions, PagedList, State } from './types';
+import { Action, BookActions, State } from './types';
 
 const initialState: State = {
   list: {
@@ -12,13 +12,12 @@ const initialState: State = {
   cart: [],
 };
 
-const reducer = (state = initialState, action: Partial<Action> = {}) => {
-  const { type } = action;
-  switch (type) {
+const reducer = (state = initialState, action?: Action) => {
+  switch (action?.type) {
     case BookActions.FETCH_BOOKS_REQUEST:
       return { ...state, loading: true };
     case BookActions.FETCH_BOOKS_SUCCESS: {
-      const { payload } = action as { payload: PagedList<Book> };
+      const { payload } = action as Action<BookActions.FETCH_BOOKS_SUCCESS>;
       const list = { ...payload, items: payload.items.map(({ id }) => id) };
       const items = payload.items.reduceRight((acc, i) => ({ ...acc, [i.id]: i }), state.items);
       return { ...state, list, items, error: false, loading: false };

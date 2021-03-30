@@ -6,9 +6,11 @@ export enum BookActions {
   FETCH_BOOKS_FAILURE = 'FETCH_BOOKS_FAILURE',
 }
 
-export interface Action extends BaseAction<BookActions> {
-  [k: string]: any;
-}
+type BookActionExtension<T extends BookActions> = T extends BookActions.FETCH_BOOKS_SUCCESS
+  ? { payload: PagedList<Book> }
+  : {};
+
+export type Action<T extends BookActions = BookActions> = BaseAction<T> & BookActionExtension<T>;
 
 export interface PagedList<I> {
   totalPages: number;
