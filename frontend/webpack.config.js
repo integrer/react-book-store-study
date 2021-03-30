@@ -15,12 +15,14 @@ module.exports = (env, argv) => {
   const serve = !!env.WEBPACK_SERVE;
   const styleSyntax = ['sass', 'scss', 'css'];
   const isDevelopment = mode === 'development';
+  const isProduction = mode === 'production';
 
   return {
     mode,
     entry: './src/index',
     // browserslist prevents live reload in dev server (fixed since v4)
     target: serve ? 'web' : `browserslist:${isDevelopment ? 'development' : 'production'}`,
+    devtool: !isProduction && 'inline-source-map',
     output: {
       path: process.env['WEBPACK_OUTPUT_PATH'] || path.resolve(__dirname, 'dist'),
       publicPath: '/',
