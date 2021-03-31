@@ -58,3 +58,19 @@ export const fetchBooks = (axios: AxiosInstance, pageParams?: PageParams) => asy
     }
   }
 };
+
+export const addBookToCart = (
+  id: number,
+  qty = 1,
+): BookAction<BookActionTypes.ADD_BOOK_TO_CART> => ({
+  type: BookActionTypes.ADD_BOOK_TO_CART,
+  payload: { id, qty },
+});
+
+export const removeBookFromCart = (
+  id: number,
+  qty = 1,
+): BookAction<BookActionTypes.REMOVE_BOOK_FROM_CART> => ({
+  type: BookActionTypes.REMOVE_BOOK_FROM_CART,
+  payload: { id, qty },
+});
