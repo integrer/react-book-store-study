@@ -33,7 +33,7 @@ export interface Book {
   isbn: string;
 }
 
-interface CartItem {
+export interface CartItem {
   id: number;
   quantity: number;
 }
