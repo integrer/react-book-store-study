@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class BookController {
   @Autowired
-  lateinit var hotelListService: BookListService
+  lateinit var bookListService: BookListService
 
   @GetMapping("/books")
-  fun hotels(
+  fun books(
     @RequestParam(value = "name") name: String?,
     @RequestParam(value = "author") author: String?,
     @RequestParam(value = "genre") genre: String?,
@@ -20,7 +20,7 @@ class BookController {
     @RequestParam(value = "yearTo") yearTo: Short?,
     @RequestParam(value = "page") page: Int?,
     @RequestParam(value = "pageSize") pageSize: Int?,
-  ) = hotelListService.getList(
+  ) = bookListService.getList(
     BookListService.Query(name, author, genre, yearFrom, yearTo),
     BookListService.PageConfig.of(page, pageSize)
   )
