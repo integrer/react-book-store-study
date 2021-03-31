@@ -38,6 +38,14 @@ const AppSettingsAware = () => {
                 onPageChange={({ selected }) => {
                   dispatch(fetchBooks(appSettings.api(), { page: selected }));
                 }}
+                containerClassName="pagination"
+                activeClassName="active"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
               />
             </>
           );

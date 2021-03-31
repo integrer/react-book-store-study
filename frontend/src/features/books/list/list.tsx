@@ -3,7 +3,7 @@ import { Book } from '../types';
 
 export default ({ books }: { books: Book[] }) => {
   return (
-    <table>
+    <table className="table">
       <thead>
         <tr>
           <th>Book</th>
