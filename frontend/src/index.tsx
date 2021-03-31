@@ -5,6 +5,7 @@ import AppSettings, { appSettings } from './app-settings';
 import List from './features/books/list';
 import Cart from './features/books/cart';
 import store from '~/store';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
