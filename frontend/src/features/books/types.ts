@@ -5,10 +5,14 @@ export enum BookActionTypes {
   FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS',
   FETCH_BOOKS_CANCEL = 'FETCH_BOOKS_CANCEL',
   FETCH_BOOKS_FAILURE = 'FETCH_BOOKS_FAILURE',
+  ADD_BOOK_TO_CART = 'ADD_BOOK_TO_CART',
+  REMOVE_BOOK_FROM_CART = 'REMOVE_BOOK_FROM_CART',
 }
 
 type BookActionExtension<T extends BookActionTypes> = T extends BookActionTypes.FETCH_BOOKS_SUCCESS
   ? { payload: PagedList<Book> }
+  : T extends BookActionTypes.ADD_BOOK_TO_CART | BookActionTypes.REMOVE_BOOK_FROM_CART
+  ? { payload: { id: number; qty: number } }
   : {};
 
 export type BookAction<T extends BookActionTypes = BookActionTypes> = BaseAction<T> &
